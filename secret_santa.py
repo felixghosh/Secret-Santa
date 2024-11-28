@@ -1,4 +1,6 @@
 import random
+import sys
+import os
 
 class Person:
     def __init__(self, name, candidates, forbidden) -> None:
@@ -10,17 +12,18 @@ class Person:
     def __str__(self) -> str:
         return f"{self.name}: ({self.candidates})"
 
-candidates = ["Felix", "Ida", "Olivia", "Malin", "Torbjörn", "Daniel", "Jojo", "Drew"]
+candidates = ["Felix", "Ida", "Olivia", "Daniel", "Jojo", "Drew", "Sofia", "Gisela", "Jonas"]
 
 Felix = Person("Felix", candidates, ["Ida"])
 Ida = Person("Ida", candidates, ["Felix"])
 Olivia = Person("Olivia", candidates, [])
-Malin = Person("Malin", candidates, ["Torbjörn"])
-Torbjörn = Person("Torbjörn", candidates, ["Malin"])
 Daniel = Person("Daniel", candidates, [])
 Jojo = Person("Jojo", candidates, ["Drew"])
 Drew = Person("Drew", candidates, ["Jojo"])
-people = [Felix, Ida, Olivia, Malin, Torbjörn, Daniel, Jojo, Drew]
+Sofia = Person("Sofia", candidates, [])
+Gisela = Person("Gisela", candidates, ["Jonas"])
+Jonas = Person("Jonas", candidates, ["Gisela"])
+people = [Felix, Ida, Olivia, Daniel, Jojo, Drew, Sofia, Gisela, Jonas]
 
 
 print("Generating matches!\n")
@@ -57,6 +60,11 @@ while not done:
     if not illegal_match and len(matches) == len(people):
         done = True
 
-print("Done! The results are:")
+os.system('clear')
 for person in matches:
+    print(f"\033[92m{person.name}\033[00m gives to ")
+    sys.stdin.readline()
+    os.system('clear')
     print(f"\033[92m{person.name}\033[00m gives to \033[91m{matches[person]}\033[00m")
+    sys.stdin.readline()
+    os.system('clear')
