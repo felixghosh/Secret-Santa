@@ -8,11 +8,11 @@ class Person:
         self.forbidden = forbidden
         self.candidates = [person for person in candidates if not person in forbidden]
         self.candidates.remove(self.name)
-    
+
     def __str__(self) -> str:
         return f"{self.name}: ({self.candidates})"
 
-candidates = ["Felix", "Ida", "Olivia", "Daniel", "Jojo", "Drew", "Sofia", "Gisela", "Jonas"]
+candidates = ["Felix", "Ida", "Olivia", "Daniel", "Jojo", "Drew", "Sofia", "Sara", "Malin", "Torbjorn", "Gisela", "Jonas"]
 
 Felix = Person("Felix", candidates, ["Ida"])
 Ida = Person("Ida", candidates, ["Felix"])
@@ -20,10 +20,13 @@ Olivia = Person("Olivia", candidates, [])
 Daniel = Person("Daniel", candidates, [])
 Jojo = Person("Jojo", candidates, ["Drew"])
 Drew = Person("Drew", candidates, ["Jojo"])
+Sara = Person("Sara", candidates, ["Olivia"])
+Malin = Person("Malin", candidates, ["Torbjorn"])
+Torbjorn = Person("Torbjorn", candidates, ["Malin"])
 Sofia = Person("Sofia", candidates, [])
 Gisela = Person("Gisela", candidates, ["Jonas"])
 Jonas = Person("Jonas", candidates, ["Gisela"])
-people = [Felix, Ida, Olivia, Daniel, Jojo, Drew, Sofia, Gisela, Jonas]
+people = [Felix, Ida, Olivia, Daniel, Jojo, Drew, Sofia, Sara, Torbjorn, Malin, Gisela, Jonas]
 
 
 print("Generating matches!\n")
@@ -50,7 +53,7 @@ while not done:
                 matches[person] = potential_match
         if not match_found:
             break
-    
+
     #Check that everyone received a leagal match
     illegal_match = False
     for person in matches:
